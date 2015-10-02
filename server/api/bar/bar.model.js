@@ -5,7 +5,10 @@ var mongoose = require('mongoose'),
 
 var BarSchema = new Schema({
   name: String,
-  info: String,
+  snippet: String,
+  url: String,
+  img_url: String,
+  attending: Array,
   active: Boolean
 });
 
