@@ -25,7 +25,7 @@
           <div class="info">
             <div class="info-top">
               <a ng-href="{{bar.url}}"> {{bar.name}} </a>
-              <a class="btn btn-default btn-xs going ng-binding" ng-click="going(bar)">0 Going</a>
+              <a class="btn btn-default btn-xs going ng-binding" ng-click="going(bar)">{{bar.attending.length}} Going</a>
             </div>
             <p class="snippet">{{bar.snippet_text}}</p>
           </div>
