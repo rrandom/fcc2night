@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('fcc2nightlifeApp')
-  .controller('MainCtrl', function ($scope, $http, Auth, $location) {
+  .controller('MainCtrl', function ($scope, $http, Auth, $location, cacheBar) {
     var dbBarList = [];
 
     $scope.awesomeThings = [];
     $scope.location = '';
-    $scope.bars = [];
+    $scope.bars = cacheBar.data.bars;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.searchBars = function () {
@@ -31,6 +31,7 @@ angular.module('fcc2nightlifeApp')
           }
 
           $scope.bars = newBars;
+          cacheBar.update($scope.bars);
         });
       });
     };
@@ -48,17 +49,17 @@ angular.module('fcc2nightlifeApp')
           bar.attending[userIndex] = null;
           bar.attending = bar.attending.filter(function (user) {
             return user !== null;
-          })
+          });
         }
         if (dbBarList.indexOf(bar.url) === -1) {
           // create
           $http.post('/api/bars/', bar).success(function () {
-            console.log("going!");
+            console.log('going!');
           });
         } else {
           // update
           $http.put('/api/bars/' + bar._id, bar).success(function () {
-            console.log("Not going!");
+            console.log('Not going!');
           });
         }
       }
