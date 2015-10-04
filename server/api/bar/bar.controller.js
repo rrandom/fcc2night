@@ -19,8 +19,9 @@ exports.searchYelp = function (req, res) {
     location: req.query.location,
     limit: '20'
   }, function (error, data) {
-    console.log(error);
-    console.log(data);
+    if (err) {
+      return handleError(res, err);
+    }
     return res.status(200).json(data);
   });
 };
