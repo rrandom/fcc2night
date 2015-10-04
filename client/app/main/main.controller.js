@@ -2,6 +2,7 @@
 
 angular.module('fcc2nightlifeApp')
   .controller('MainCtrl', function ($scope, $http, Auth, $location, cacheBar) {
+
     var dbBarList = [];
 
     $scope.awesomeThings = [];
@@ -52,32 +53,17 @@ angular.module('fcc2nightlifeApp')
           });
         }
         if (dbBarList.indexOf(bar.url) === -1) {
+          dbBarList.push(bar.url);
           // create
           $http.post('/api/bars/', bar).success(function () {
             console.log('going!');
           });
         } else {
-          // update
+          // update if in db, or err if not
           $http.put('/api/bars/' + bar._id, bar).success(function () {
             console.log('Not going!');
           });
         }
       }
-    };
-
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
     };
   });
