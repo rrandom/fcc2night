@@ -2,7 +2,7 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
+    <h1>Drink tonight?</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
@@ -11,18 +11,35 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
+
+      <form class="" ng-submit="searchBars()">
+        <div class="form-group col-xs-10">
+          <input class="form-control" placeholder="Where are you?" ng-model="location">
+        </div>
+        <button class="btn btn-default col-xs-2" type="submit">go</button>
+      </form>
+
+      <ul class="nav nav-stacked col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <li ng-repeat="bar in bars">
+          <img class="img-rounded" ng-src="{{bar.image_url}}">
+          <div class="info">
+            <div class="info-top">
+              <a ng-href="{{bar.url}}"> {{bar.name}} </a>
+              <a class="btn btn-default btn-xs going ng-binding" ng-click="going(bar)">0 Going</a>
+            </div>
+            <p class="snippet">{{bar.snippet_text}}</p>
+          </div>
+        </li>
       </ul>
+
     </div>
   </div>
 </div>
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.1.1 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+    <p>Angular Fullstack v2.1.1 |
+      <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+      <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
   </div>
 </footer>

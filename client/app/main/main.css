@@ -32,3 +32,26 @@
 .navbar-text {
     margin-left: 15px;
 }
+
+
+li{
+  display: flex !important;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+li > .info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  justify-content: space-around;
+}
+
+.info-top > a{
+  margin-right: 6px;
+}
+
+.info-top {
+  display: flex;
+  flex-direction: row;
+}
