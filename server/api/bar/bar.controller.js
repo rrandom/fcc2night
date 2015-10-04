@@ -2,12 +2,26 @@
 
 var _ = require('lodash');
 var Bar = require('./bar.model');
+var yelp = require('./bar.config.js');
 
 // Get list of bars
 exports.index = function(req, res) {
   Bar.find(function (err, bars) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(bars);
+  });
+};
+
+exports.searchYelp = function (req, res) {
+  console.log('req.query:', req.query.location);
+  yelp.search({
+    term: "bar",
+    location: req.query.location,
+    limit: '20'
+  }, function (error, data) {
+    console.log(error);
+    console.log(data);
+    return res.status(200).json(data);
   });
 };
 
